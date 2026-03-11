@@ -1,26 +1,299 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Local Fonts ────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: "Gloock";
+  src: url("/fonts/Gloock-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: "CrimsonPro";
+  src: url("/fonts/CrimsonPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "CrimsonPro";
+  src: url("/fonts/CrimsonPro-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CrimsonPro";
+  src: url("/fonts/CrimsonPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "InstrumentSans";
+  src: url("/fonts/InstrumentSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "InstrumentSans";
+  src: url("/fonts/InstrumentSans-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "InstrumentSans";
+  src: url("/fonts/InstrumentSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("/fonts/JetBrainsMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("/fonts/JetBrainsMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Theme Tokens ───────────────────────────────────────────────────────── */
+
+@theme {
+  /* Colors — Garden Pole (warm, ancient, organic) */
+  --color-parchment: #F5F0E8;
+  --color-cream: #EDE8DC;
+  --color-ink: #1C1814;
+  --color-umber: #6B4F3A;
+  --color-gold: #B8860B;
+  --color-gold-light: #D4A843;
+  --color-moss: #3D5234;
+  --color-moss-light: #4D6642;
+
+  /* Colors — Internet Pole (cold, modern, digital) */
+  --color-terminal: #0A0A0A;
+  --color-dim: #141414;
+  --color-grid-line: #1E1E1E;
+  --color-mono-gray: #8A8480;
+  --color-phosphor: #4ADE80;
+
+  /* Colors — Functional */
+  --color-terracotta: #C4603A;
+  --color-terracotta-dark: #A84E2C;
+  --color-warm-white: #F9F6F1;
+
+  /* Typography */
+  --font-display: "Gloock", Georgia, "Times New Roman", serif;
+  --font-serif: "CrimsonPro", Georgia, serif;
+  --font-sans: "InstrumentSans", system-ui, sans-serif;
+  --font-mono: "JetBrainsMono", "Courier New", monospace;
+
+  /* Spacing tokens */
+  --spacing-section: 7rem;
+  --spacing-section-sm: 4rem;
+  --spacing-section-lg: 10rem;
+  --spacing-gutter: 1.5rem;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "InstrumentSans", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #1C1814;
+  background-color: #F5F0E8;
+}
+
+/* ─── Typography Utilities ───────────────────────────────────────────────── */
+
+.display-xl {
+  font-family: "Gloock", Georgia, serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+.display-lg {
+  font-family: "Gloock", Georgia, serif;
+  font-size: clamp(2.25rem, 4.5vw, 4.25rem);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+}
+
+.display-md {
+  font-family: "Gloock", Georgia, serif;
+  font-size: clamp(1.625rem, 2.75vw, 2.625rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.prose-lg {
+  font-family: "InstrumentSans", system-ui, sans-serif;
+  font-size: 1.1875rem;
+  line-height: 1.75;
+}
+
+.prose-base {
+  font-family: "InstrumentSans", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.label-sm {
+  font-family: "JetBrainsMono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.label-serif {
+  font-family: "CrimsonPro", Georgia, serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ─── Grain Texture ──────────────────────────────────────────────────────── */
+
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Grid Pattern (terminal sections) ──────────────────────────────────── */
+
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-cursor-blink {
+  animation: cursorBlink 1.1s step-end infinite;
+}
+
+.animate-marquee {
+  animation: marqueeLeft 30s linear infinite;
+}
+
+/* ─── Reveal on scroll ───────────────────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Shadows ────────────────────────────────────────────────────────────── */
+
+.shadow-warm-sm {
+  box-shadow: 0 2px 8px rgba(28,24,20,0.08), 0 1px 2px rgba(28,24,20,0.06);
+}
+
+.shadow-warm-md {
+  box-shadow: 0 8px 32px rgba(28,24,20,0.12), 0 2px 8px rgba(28,24,20,0.08);
+}
+
+.shadow-warm-lg {
+  box-shadow: 0 24px 64px rgba(28,24,20,0.16), 0 8px 24px rgba(28,24,20,0.10);
+}
+
+.shadow-gold-glow {
+  box-shadow: 0 0 0 2px rgba(184,134,11,0.45);
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid #B8860B;
+  outline-offset: 3px;
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+
+::selection {
+  background-color: rgba(196,96,58,0.2);
+  color: #1C1814;
 }
