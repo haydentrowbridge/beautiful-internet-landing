@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Work — Beautiful Internet</title>
+  <link rel="stylesheet" href="https://use.typekit.net/doc2ohu.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ─── Page-specific overrides ─── */
+
+    body {
+      background: var(--bg);
+    }
+
+    .page-wrap {
+      min-height: 100vh;
+      padding-top: 7rem;
+    }
+
+    /* ─── Page Hero ─── */
+
+    .page-hero {
+      padding: 6rem 6vw 5rem;
+      max-width: 900px;
+      position: relative;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      left: 6vw;
+      bottom: 0;
+      width: min(560px, 80vw);
+      height: 1px;
+      background: linear-gradient(to right, rgba(57, 255, 20, 0.35), transparent);
+    }
+
+    .page-hero .section-eyebrow {
+      margin-bottom: 2rem;
+    }
+
+    .page-hero-heading {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .page-hero-heading em {
+      font-style: italic;
+      color: var(--phosphor);
+    }
+
+    .page-hero-body {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      color: rgba(245, 240, 232, 0.78);
+      line-height: 1.8;
+      max-width: 52ch;
+    }
+
+    /* ─── Partners Section ─── */
+
+    .work-partners {
+      padding: 7rem 6vw;
+      border-top: 1px solid rgba(57, 255, 20, 0.12);
+    }
+
+    .work-partners-header {
+      max-width: 660px;
+      margin-bottom: 5rem;
+    }
+
+    .work-partners-header .below-heading {
+      margin-top: 1rem;
+    }
+
+    .partners-list {
+      max-width: 900px;
+    }
+
+    /* ─── Approach Section ─── */
+
+    .work-approach {
+      padding: 7rem 6vw;
+      border-top: 1px solid rgba(57, 255, 20, 0.12);
+    }
+
+    .approach-header {
+      max-width: 660px;
+      margin-bottom: 5rem;
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 1080px;
+      border: 1px solid rgba(57, 255, 20, 0.1);
+    }
+
+    .approach-item {
+      padding: 2.75rem 2.5rem;
+      border-right: 1px solid rgba(57, 255, 20, 0.1);
+      position: relative;
+    }
+
+    .approach-item:last-child {
+      border-right: none;
+    }
+
+    .approach-number {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--phosphor);
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 12px rgba(57, 255, 20, 0.5);
+    }
+
+    .approach-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+      color: var(--text);
+      line-height: 1.2;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .approach-desc {
+      font-family: var(--font-sub);
+      font-size: 0.88rem;
+      color: rgba(245, 240, 232, 0.72);
+      line-height: 1.85;
+    }
+
+    /* ─── CTA Strip ─── */
+
+    .work-cta {
+      padding: 6rem 6vw;
+      border-top: 1px solid rgba(57, 255, 20, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .work-cta-text {
+      max-width: 480px;
+    }
+
+    .work-cta-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--text);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .work-cta-body {
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      color: rgba(245, 240, 232, 0.72);
+      line-height: 1.75;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 768px) {
+      .approach-grid {
+        grid-template-columns: 1fr;
+      }
+      .approach-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(57, 255, 20, 0.1);
+      }
+      .approach-item:last-child { border-bottom: none; }
+      .work-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER ──────────────────────── -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="./index.html" class="wordmark">
+        <span class="wm-beautiful">Beautiful</span>
+        <span class="wm-internet">Internet</span>
+      </a>
+      <nav class="site-nav">
+        <a href="./work.html" class="nav-link" style="color: var(--text);">Work</a>
+        <a href="./engage.html" class="nav-link">Engage</a>
+        <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="nav-cta">Let's Talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── PAGE CONTENT ─── -->
+  <div class="page-wrap">
+
+    <!-- Hero -->
+    <section class="page-hero">
+      <span class="section-eyebrow">// The Work</span>
+      <h1 class="page-hero-heading">What we've<br>built <em>together.</em></h1>
+      <p class="page-hero-body">Every engagement starts with a conversation about vision. What follows is a process of clarification, strategy, and formation — translating what an organization already believes into a digital presence that actually reflects it.</p>
+    </section>
+
+    <!-- Partners -->
+    <section class="work-partners">
+      <div class="work-partners-header reveal">
+        <span class="section-eyebrow">// Recent Partners</span>
+        <h2 class="below-heading">Organizations we've had<br>the privilege of serving.</h2>
+        <p class="partners-intro">Christian nonprofits, churches, and faith-driven organizations ready for a digital presence that matches the weight of their mission.</p>
+      </div>
+      <div class="partners-list">
+
+        <div class="partner-row reveal">
+          <span class="partner-number">01</span>
+          <div class="partner-info">
+            <span class="partner-name">Austin Stone Community Church</span>
+            <span class="partner-location">Austin, TX</span>
+          </div>
+          <p class="partner-desc">Digital formation strategy and discipleship ecosystem buildout for one of the largest churches in the country. Work included formation audit, content strategy, and digital architecture for a multi-campus environment.</p>
+        </div>
+
+        <div class="partner-row reveal">
+          <span class="partner-number">02</span>
+          <div class="partner-info">
+            <span class="partner-name">Moving Works</span>
+            <span class="partner-location">Austin, TX</span>
+          </div>
+          <p class="partner-desc">A formation audit that helped leadership clarify their digital direction and make a decisive shift toward in-person discipleship. The outcome was a leaner, more intentional digital presence that reflected their actual mission.</p>
+        </div>
+
+        <div class="partner-row reveal">
+          <span class="partner-number">03</span>
+          <div class="partner-info">
+            <span class="partner-name">Maybe God Podcast</span>
+            <span class="partner-location">National</span>
+          </div>
+          <p class="partner-desc">YouTube strategy and content development for a nationally distributed faith-and-culture podcast. Helped the team build a content framework that matched the theological depth of the show to a digital format that could actually reach people.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="work-approach">
+      <div class="approach-header reveal">
+        <span class="section-eyebrow">// How We Work</span>
+        <h2 class="below-heading">A process built<br>for formation, not output.</h2>
+      </div>
+      <div class="approach-grid">
+
+        <div class="approach-item reveal">
+          <span class="approach-number">01 / LISTEN</span>
+          <h3 class="approach-title">Understand the Mission</h3>
+          <p class="approach-desc">Every engagement starts with listening. We spend the first sessions asking questions, not offering solutions. What do you believe? What problem are you solving? What does faithfulness look like for your organization?</p>
+        </div>
+
+        <div class="approach-item reveal">
+          <span class="approach-number">02 / DIAGNOSE</span>
+          <h3 class="approach-title">Find the Gap</h3>
+          <p class="approach-desc">We audit what you're currently communicating online and compare it to the clarity of your internal vision. The gap between those two things is where the work begins.</p>
+        </div>
+
+        <div class="approach-item reveal">
+          <span class="approach-number">03 / BUILD</span>
+          <h3 class="approach-title">Translate and Form</h3>
+          <p class="approach-desc">We build the strategy, frameworks, and content that close the gap. This is not about more content. It is about better formation — digital presence that actually reflects what you believe and invites people into it.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="work-cta">
+      <div class="work-cta-text reveal">
+        <h2 class="work-cta-heading">Ready to start<br>a conversation?</h2>
+        <p class="work-cta-body">The first conversation is about your vision, not our services. Tell us what you're building. We'll tell you where we think we can help.</p>
+      </div>
+      <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="cta-button" style="margin-bottom: 0;">Let's Talk</a>
+    </section>
+
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-wordmark">
+        <span class="wm-beautiful">Beautiful</span>
+        <span class="wm-internet">Internet</span>
+      </div>
+      <p class="footer-tagline">Eternal Mission. Modern Expression.</p>
+      <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="footer-cta">Let's Talk →</a>
+    </div>
+  </footer>
+
+  <script>
+    // Simple scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engage — Beautiful Internet</title>
+  <link rel="stylesheet" href="https://use.typekit.net/doc2ohu.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ─── Page-specific overrides ─── */
+
+    body {
+      background: var(--bg);
+    }
+
+    .page-wrap {
+      min-height: 100vh;
+      padding-top: 7rem;
+    }
+
+    /* ─── Page Hero ─── */
+
+    .page-hero {
+      padding: 6rem 6vw 5rem;
+      max-width: 900px;
+      position: relative;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      left: 6vw;
+      bottom: 0;
+      width: min(560px, 80vw);
+      height: 1px;
+      background: linear-gradient(to right, rgba(57, 255, 20, 0.35), transparent);
+    }
+
+    .page-hero .section-eyebrow {
+      margin-bottom: 2rem;
+    }
+
+    .page-hero-heading {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .page-hero-heading em {
+      font-style: italic;
+      color: var(--phosphor);
+    }
+
+    .page-hero-body {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      color: rgba(245, 240, 232, 0.78);
+      line-height: 1.8;
+      max-width: 52ch;
+    }
+
+    /* ─── Tiers Header ─── */
+
+    .tiers-section {
+      padding: 7rem 6vw;
+      border-top: 1px solid rgba(57, 255, 20, 0.12);
+    }
+
+    .tiers-section-header {
+      max-width: 660px;
+      margin-bottom: 5rem;
+    }
+
+    /* ─── What to Expect Section ─── */
+
+    .expect-section {
+      padding: 7rem 6vw;
+      border-top: 1px solid rgba(57, 255, 20, 0.12);
+    }
+
+    .expect-header {
+      max-width: 660px;
+      margin-bottom: 5rem;
+    }
+
+    .expect-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem 5rem;
+      max-width: 900px;
+    }
+
+    .expect-item {
+    }
+
+    .expect-marker {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--phosphor);
+      letter-spacing: 0.12em;
+      text-shadow: 0 0 12px rgba(57, 255, 20, 0.5);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .expect-title {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.4vw, 1.25rem);
+      color: var(--text);
+      line-height: 1.25;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .expect-desc {
+      font-family: var(--font-sub);
+      font-size: 0.88rem;
+      color: rgba(245, 240, 232, 0.72);
+      line-height: 1.85;
+    }
+
+    /* ─── CTA Strip ─── */
+
+    .engage-cta {
+      padding: 6rem 6vw;
+      border-top: 1px solid rgba(57, 255, 20, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .engage-cta-text {
+      max-width: 480px;
+    }
+
+    .engage-cta-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--text);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .engage-cta-body {
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      color: rgba(245, 240, 232, 0.72);
+      line-height: 1.75;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 768px) {
+      .expect-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .engage-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER ──────────────────────── -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="./index.html" class="wordmark">
+        <span class="wm-beautiful">Beautiful</span>
+        <span class="wm-internet">Internet</span>
+      </a>
+      <nav class="site-nav">
+        <a href="./work.html" class="nav-link">Work</a>
+        <a href="./engage.html" class="nav-link" style="color: var(--text);">Engage</a>
+        <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="nav-cta">Let's Talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── PAGE CONTENT ─── -->
+  <div class="page-wrap">
+
+    <!-- Hero -->
+    <section class="page-hero">
+      <span class="section-eyebrow">// How We Work Together</span>
+      <h1 class="page-hero-heading">Find the engagement<br>that fits <em>where you are.</em></h1>
+      <p class="page-hero-body">Every organization is at a different point in their digital formation journey. Some need to start from scratch. Others need a strategic partner to help them move faster. We've built three engagements that meet you where you are.</p>
+    </section>
+
+    <!-- Tiers -->
+    <section class="tiers-section">
+      <div class="tiers-section-header reveal">
+        <span class="section-eyebrow">// Engagement Tiers</span>
+        <h2 class="below-heading">Three ways to work<br>together.</h2>
+      </div>
+      <div class="tiers-list">
+
+        <div class="tier-row reveal">
+          <span class="tier-number">01</span>
+          <div class="tier-info">
+            <h3 class="tier-title">Digital Formation Foundations</h3>
+            <span class="tier-commitment">$1,500/month — 3-month minimum</span>
+          </div>
+          <div>
+            <p class="tier-desc">You have a vision. Now let's figure out what it looks like online. For leaders who are new to digital or need to understand what a formation-driven digital presence actually looks like before building anything. We take your organizational vision and map it to a clear digital direction.</p>
+            <ul class="tier-includes">
+              <li>Monthly 1:1 sessions</li>
+              <li>Digital framing document</li>
+              <li>One team briefing per quarter</li>
+            </ul>
+          </div>
+          <div class="tier-price-col">
+            <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="tier-cta">Start a Conversation</a>
+          </div>
+        </div>
+
+        <div class="tier-row reveal">
+          <span class="tier-number">02</span>
+          <div class="tier-info">
+            <h3 class="tier-title">Digital Formation Advisory</h3>
+            <span class="tier-commitment">$3,500/month — 6-month minimum</span>
+          </div>
+          <div>
+            <p class="tier-desc">For leaders ready to build a real strategy. We audit your current digital presence, identify the gap between your vision and what's actually being expressed online, and build a content strategy that closes it.</p>
+            <ul class="tier-includes">
+              <li>Bi-weekly sessions</li>
+              <li>Team workshops</li>
+              <li>Ongoing support</li>
+            </ul>
+          </div>
+          <div class="tier-price-col">
+            <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="tier-cta">Start a Conversation</a>
+          </div>
+        </div>
+
+        <div class="tier-row reveal">
+          <span class="tier-number">03</span>
+          <div class="tier-info">
+            <h3 class="tier-title">Full Equipping Engagement</h3>
+            <span class="tier-commitment">$5,500–6,000/month — 12-month engagement</span>
+          </div>
+          <div>
+            <p class="tier-desc">For leaders ready to amplify their mission. We work alongside you, translating your vision into frameworks, formats, and workflows that connect with a digital audience.</p>
+            <ul class="tier-includes">
+              <li>Embedded team support</li>
+              <li>Content frameworks and formation workflows</li>
+              <li>Leadership and content team equipping</li>
+            </ul>
+          </div>
+          <div class="tier-price-col">
+            <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="tier-cta">Start a Conversation</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- What to Expect -->
+    <section class="expect-section">
+      <div class="expect-header reveal">
+        <span class="section-eyebrow">// What to Expect</span>
+        <h2 class="below-heading">The first conversation<br>sets the tone.</h2>
+      </div>
+      <div class="expect-grid">
+
+        <div class="expect-item reveal">
+          <span class="expect-marker">// No Pitch</span>
+          <h3 class="expect-title">We Start With Your Mission</h3>
+          <p class="expect-desc">The first conversation is not about our services. It is about your vision. We spend most of that time asking questions, not presenting proposals. If there is a fit, it becomes obvious.</p>
+        </div>
+
+        <div class="expect-item reveal">
+          <span class="expect-marker">// Formation First</span>
+          <h3 class="expect-title">Strategy in Service of Discipleship</h3>
+          <p class="expect-desc">We do not optimize for engagement metrics. We build strategies that are designed to form people. If a tactic does not serve that end, we do not recommend it.</p>
+        </div>
+
+        <div class="expect-item reveal">
+          <span class="expect-marker">// Long-Term Thinking</span>
+          <h3 class="expect-title">Built to Last Beyond Our Engagement</h3>
+          <p class="expect-desc">Every engagement ends with your team more capable than when we started. We are not building dependency. We are building capacity. You should be able to carry this work forward without us.</p>
+        </div>
+
+        <div class="expect-item reveal">
+          <span class="expect-marker">// Honest Assessment</span>
+          <h3 class="expect-title">We Will Tell You What We See</h3>
+          <p class="expect-desc">If your digital presence has significant problems, we will say so. If a strategy is not working, we will say so. We do not tell people what they want to hear. We tell them what is true.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="engage-cta">
+      <div class="engage-cta-text reveal">
+        <h2 class="engage-cta-heading">Not sure which<br>tier fits?</h2>
+        <p class="engage-cta-body">That is what the first conversation is for. Tell us where you are. We will help you figure out where to start.</p>
+      </div>
+      <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="cta-button" style="margin-bottom: 0;">Start a Conversation</a>
+    </section>
+
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-wordmark">
+        <span class="wm-beautiful">Beautiful</span>
+        <span class="wm-internet">Internet</span>
+      </div>
+      <p class="footer-tagline">Eternal Mission. Modern Expression.</p>
+      <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="footer-cta">Let's Talk →</a>
+    </div>
+  </footer>
+
+  <script>
+    // Simple scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

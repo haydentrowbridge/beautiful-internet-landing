@@ -1,7 +1,18 @@
 # CLAUDE.md — Frontend Website Rules
 
 ## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
+- **Invoke the `beautiful-internet-brand` skill** before writing any frontend code, every session, no exceptions. This skill incorporates both brand guidelines AND design execution principles — it replaces invoking `frontend-design` separately.
+
+## Always Do Last — Session Debrief
+At the end of every session (when the user wraps up or says they're done):
+1. Review all design decisions, feedback, and corrections made this session
+2. Update the relevant memory files in `/Users/hayden/.claude/projects/-Users-hayden-beautiful-internet-landing/memory/`
+   - `feedback_style_preferences.md` — design taste, aesthetic choices, things Hayden approved or rejected
+   - `feedback_communication.md` — how Hayden likes to work, communication style, pacing preferences
+   - `project_beautiful_internet.md` — current state, key decisions, what pages/sections exist
+3. Update MEMORY.md index if new memory files were added
+4. If brand guidelines changed, update the brand skill at `.claude/skills/beautiful-internet-brand/SKILL.md`
+5. Tell Hayden: "Debrief saved — here's what I learned this session: [2–4 bullet summary]"
 
 ## Reference Images
 - If a reference image is provided: match layout, spacing, typography, and color exactly. Swap in placeholder content (images via `https://placehold.co/`, generic copy). Do not improve or add to the design.

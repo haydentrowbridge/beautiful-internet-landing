@@ -1,0 +1,10 @@
+{
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/work", "dest": "/work.html" },
+    { "src": "/engage", "dest": "/engage.html" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
