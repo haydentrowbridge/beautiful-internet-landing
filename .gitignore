@@ -1,10 +1,13 @@
 # dependencies
 node_modules/
 
-# next.js remnants
+# next.js remnants (project is now plain HTML)
 .next/
 out/
 build/
+package.json
+package-lock.json
+README.md
 
 # dev tools
 .DS_Store
