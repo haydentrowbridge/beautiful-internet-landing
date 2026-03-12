@@ -98,9 +98,10 @@ function setupCanvas() {
 }
 
 function setupSectionCanvases() {
-  const dpr = window.devicePixelRatio || 1;
-  const w   = Math.round(window.innerWidth / 2);
-  const h   = window.innerHeight;
+  const dpr     = window.devicePixelRatio || 1;
+  const mobile  = window.innerWidth <= 768;
+  const w       = mobile ? window.innerWidth : Math.round(window.innerWidth / 2);
+  const h       = window.innerHeight;
 
   canvasLike.width  = w * dpr;
   canvasLike.height = h * dpr;
@@ -159,7 +160,7 @@ function drawLikeFrame(index) {
   const img = likeFrames[index];
   if (!img) return;
 
-  const cw    = Math.round(window.innerWidth / 2);
+  const cw    = window.innerWidth <= 768 ? window.innerWidth : Math.round(window.innerWidth / 2);
   const ch    = window.innerHeight;
   const iw    = img.naturalWidth;
   const ih    = img.naturalHeight;
@@ -178,7 +179,7 @@ function drawPhoneFrame(index) {
   const img = phoneFrames[index];
   if (!img) return;
 
-  const cw    = Math.round(window.innerWidth / 2);
+  const cw    = window.innerWidth <= 768 ? window.innerWidth : Math.round(window.innerWidth / 2);
   const ch    = window.innerHeight;
   const iw    = img.naturalWidth;
   const ih    = img.naturalHeight;

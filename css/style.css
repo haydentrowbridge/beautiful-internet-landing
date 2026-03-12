@@ -929,11 +929,22 @@ body {
     font-size: 7.5vw;
   }
 
+  /* ── Section canvases: full-width on mobile ── */
+  .canvas-section,
+  .canvas-section-right,
+  .canvas-section-left {
+    width: 100vw;
+    left: 0;
+    right: auto;
+  }
+
   /* ── Scroll sections: full-width ── */
   .align-left,
   .align-right {
     justify-content: flex-start;
     padding: 2rem 1.5rem;
+    align-items: flex-end;
+    padding-bottom: 5rem;
   }
 
   .section-inner { max-width: 100%; }
