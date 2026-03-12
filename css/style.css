@@ -911,7 +911,13 @@ body {
 
 @media (max-width: 768px) {
   .site-nav .nav-link { display: none; }
-  .site-header { padding: 1.25rem 1.5rem; }
+  .site-header {
+    padding: 1rem 1.5rem;
+    background: rgba(13, 12, 10, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(57, 255, 20, 0.08);
+  }
 
   /* ── Hero text stack ── */
   #hero-text-stack {
