@@ -1388,7 +1388,13 @@ body {
   /* Imagery — mobile */
   .about-sculpture { display: none; }
   .arch-sculpture  { opacity: 0.06; height: 40%; }
-  .section-img-panel { display: none; }
+  .section-img-panel {
+    width: 100vw;
+    left: 0;
+    right: auto;
+    height: 50vh;
+    top: 0;
+  }
   .page-hero-sculpture { display: none; }
   .section-sculpture { display: none; }
 
