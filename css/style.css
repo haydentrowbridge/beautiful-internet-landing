@@ -130,6 +130,13 @@ body {
   padding: 1.5rem 3rem;
   background: var(--bg);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.site-header.header-hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
 }
 
 .header-inner {
@@ -1317,19 +1324,37 @@ body {
 
   /* ── Below fold ── */
   .partners-section,
-  .engagement-section { padding: 5rem 1.5rem; }
+  .engagement-section { padding: 4rem 1.5rem; }
+
+  .about-section { padding: 4rem 1.5rem; }
 
   .partner-row {
     grid-template-columns: 2rem 1fr;
   }
   .partner-desc { grid-column: 1 / -1; }
 
+  .below-heading {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
   .tiers-list {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
   }
   .tier-row {
-    padding: 2rem 1.5rem;
+    padding: 1.75rem 1.5rem;
+  }
+  .tier-title {
+    font-size: 1rem;
+  }
+  .tier-commitment {
+    font-size: 0.65rem;
+  }
+  .tier-desc {
+    font-size: 0.82rem;
+  }
+  .tier-includes {
+    font-size: 0.75rem;
   }
   .tier-price-col {
     flex-direction: row;
@@ -1341,14 +1366,67 @@ body {
     padding: 1.5rem 1.25rem;
   }
 
+  .about-body {
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  .tier-framing {
+    font-size: 0.85rem;
+  }
+
   .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
 
   /* Imagery — mobile */
   .about-sculpture { display: none; }
-  .arch-sculpture  { opacity: 0.08; height: 50%; }
+  .arch-sculpture  { opacity: 0.06; height: 40%; }
   .section-img-panel { display: none; }
   .page-hero-sculpture { display: none; }
   .section-sculpture { display: none; }
+
+  /* Page-specific mobile — work + engage hero */
+  .page-hero {
+    padding: 4rem 1.5rem 3rem;
+  }
+  .page-hero-heading {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+  .page-hero-body {
+    font-size: 0.88rem;
+  }
+
+  /* Engage tiers on mobile */
+  .tiers-section {
+    padding: 4rem 1.5rem;
+  }
+  .tiers-section-header {
+    margin-bottom: 3rem;
+  }
+
+  .expect-section {
+    padding: 4rem 1.5rem;
+  }
+  .expect-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .expect-header {
+    margin-bottom: 3rem;
+  }
+
+  .engage-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4rem 1.5rem;
+  }
+
+  /* Work page mobile */
+  .work-partners { padding: 4rem 1.5rem; }
+  .work-approach { padding: 4rem 1.5rem; }
+  .approach-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 /* ─── Laptop / medium screens (13–14 inch) ─── */

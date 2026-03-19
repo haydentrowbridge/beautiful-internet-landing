@@ -509,6 +509,18 @@ async function init() {
   initSectionAnimations();
 
   window.addEventListener('resize', handleResize);
+
+  // Hide header during hero scroll section, show after
+  const siteHeader = document.getElementById('site-header');
+  if (siteHeader && scrollCont) {
+    siteHeader.classList.add('header-hidden');
+    ScrollTrigger.create({
+      trigger: scrollCont,
+      start: 'bottom top',
+      onEnter: () => siteHeader.classList.remove('header-hidden'),
+      onLeaveBack: () => siteHeader.classList.add('header-hidden'),
+    });
+  }
 }
 
 init();
