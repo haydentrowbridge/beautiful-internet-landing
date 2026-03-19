@@ -21,9 +21,12 @@ yarn-debug.log*
 # vercel
 .vercel
 
-# dev-only assets (not needed for deployment)
+# dev-only assets
 temporary screenshots/
-assets/
+assets/images/Gemini_*
+assets/images/globe*
+assets/images/map*
+assets/images/paper*
 frames/
 frames-pushin/
 *.mp4

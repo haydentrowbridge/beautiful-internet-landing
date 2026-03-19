@@ -25,13 +25,13 @@ const P_ARCH_SRC   = (i) => `frames-arch/frame_${String(i).padStart(4,'0')}.jpg`
 const P_HAND_COUNT = 73;
 const P_HAND_SRC   = (i) => `frames-hand/frame_${String(i).padStart(4,'0')}.jpg`;
 
-// Section A (arch right panel): 68–79% — mirrors s01
-const SA_ENTER  = 0.68;
-const SA_LEAVE  = 0.79;
+// Section A (arch right panel): 66–81% — mirrors s01
+const SA_ENTER  = 0.66;
+const SA_LEAVE  = 0.81;
 
-// Section B (hand left panel): 81–91% — mirrors s02
-const SB_ENTER  = 0.81;
-const SB_LEAVE  = 0.91;
+// Section B (hand left panel): 82–94% — mirrors s02
+const SB_ENTER  = 0.82;
+const SB_LEAVE  = 0.94;
 
 const PRELOAD_THRESHOLD = 30;
 const IMAGE_SCALE  = 0.94;
