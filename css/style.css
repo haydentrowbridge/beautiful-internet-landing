@@ -134,17 +134,8 @@ body {
 }
 
 .site-header.header-hidden {
-  opacity: 0;
-  transform: translateY(-100%);
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .site-header.header-hidden {
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-  }
+  background: transparent;
+  border-bottom-color: transparent;
 }
 
 .header-inner {
@@ -1141,12 +1132,12 @@ body {
 }
 
 .footer-tagline {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 0.02em;
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--bi-phosphor);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .footer-cta {
