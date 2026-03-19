@@ -23,17 +23,20 @@
     .page-hero {
       padding: 6rem 6vw 5rem;
       max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
       position: relative;
     }
 
     .page-hero::after {
       content: '';
       position: absolute;
-      left: 6vw;
+      left: 50%;
+      transform: translateX(-50%);
       bottom: 0;
       width: min(560px, 80vw);
       height: 1px;
-      background: linear-gradient(to right, rgba(57, 255, 20, 0.3), transparent);
+      background: linear-gradient(to right, transparent, rgba(57, 255, 20, 0.3), transparent);
     }
 
     .page-hero .section-eyebrow {
@@ -74,6 +77,8 @@
 
     .work-partners-header {
       max-width: 660px;
+      margin-left: auto;
+      margin-right: auto;
       margin-bottom: 5rem;
     }
 
@@ -83,6 +88,8 @@
 
     .partners-list {
       max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ─── Approach Section ─── */
@@ -94,6 +101,8 @@
 
     .approach-header {
       max-width: 660px;
+      margin-left: auto;
+      margin-right: auto;
       margin-bottom: 5rem;
     }
 
@@ -102,6 +111,8 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 0;
       max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 

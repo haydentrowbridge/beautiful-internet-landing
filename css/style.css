@@ -675,7 +675,7 @@ body {
 
 .partners-section {
   padding: 8rem 6vw;
-  border-top: 1px solid rgba(138, 130, 120, 0.2);
+  border-top: 1px solid rgba(57, 255, 20, 0.15);
   position: relative;
 }
 
@@ -979,8 +979,15 @@ body {
   font-weight: 500;
   color: var(--text);
   line-height: 1.8;
-  margin-top: 2rem;
   max-width: 60ch;
+}
+
+.about-content > .about-body:first-of-type {
+  margin-top: 2rem;
+}
+
+.glow-box .about-body:first-child {
+  margin-top: 0;
 }
 
 .about-sub {

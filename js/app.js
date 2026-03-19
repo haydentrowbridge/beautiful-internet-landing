@@ -11,11 +11,11 @@
 
 const P1_COUNT  = 361;
 const P1_SRC    = (i) => `frames-360/frame_${String(i).padStart(4,'0')}.jpg`;
-const P1_END    = 0.65;
+const P1_END    = 0.60;
 
-// Pedestal fly-up: 65–68%
-const FLY_START = 0.65;
-const FLY_END   = 0.68;
+// Pedestal fly-up: 60–63% — must finish before O1 enters at 64%
+const FLY_START = 0.60;
+const FLY_END   = 0.63;
 
 // ─── SECTION PANEL SEQUENCES ────────────────────────────────────
 
