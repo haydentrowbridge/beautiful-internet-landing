@@ -613,51 +613,40 @@ body {
 }
 
 /* ============================================
-   LIGHT SECTION — #FFFFFF background
+   PAGE SCULPTURE IMAGES — ghosted atmosphere
    ============================================ */
 
-.light-section,
-.below-fold.light-section {
-  background: var(--bi-white);
-  border-top: 1px solid rgba(37, 33, 24, 0.08);
-  border-bottom: 1px solid rgba(37, 33, 24, 0.08);
+.page-hero-sculpture {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 120%;
+  width: auto;
+  mix-blend-mode: screen;
+  opacity: 0.18;
+  pointer-events: none;
+  user-select: none;
 }
 
-.light-section .section-eyebrow {
-  color: var(--bi-dark);
+.section-sculpture {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  width: auto;
+  mix-blend-mode: screen;
+  opacity: 0.14;
+  pointer-events: none;
+  user-select: none;
 }
 
-.light-section .below-heading {
-  color: var(--bi-dark);
+.section-sculpture-right {
+  right: 2%;
 }
 
-.light-section .partners-intro {
-  color: rgba(37, 33, 24, 0.72);
-}
-
-.light-section .partner-name {
-  color: var(--bi-dark);
-}
-
-.light-section .partner-location {
-  color: rgba(37, 33, 24, 0.55);
-}
-
-.light-section .partner-desc {
-  color: rgba(37, 33, 24, 0.72);
-}
-
-.light-section .partner-number {
-  color: var(--bi-dark);
-  text-shadow: none;
-}
-
-.light-section .partner-row {
-  border-color: rgba(37, 33, 24, 0.1);
-}
-
-.light-section .partner-row:last-child {
-  border-color: rgba(37, 33, 24, 0.1);
+.section-sculpture-left {
+  left: 2%;
 }
 
 /* ============================================
@@ -1344,6 +1333,8 @@ body {
   .about-sculpture { display: none; }
   .arch-sculpture  { opacity: 0.08; height: 50%; }
   .section-img-panel { display: none; }
+  .page-hero-sculpture { display: none; }
+  .section-sculpture { display: none; }
 }
 
 /* ─── Laptop / medium screens (13–14 inch) ─── */
