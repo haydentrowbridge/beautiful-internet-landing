@@ -964,7 +964,7 @@ body {
   height: 110%;
   width: auto;
   mix-blend-mode: screen;
-  opacity: 0.55;
+  opacity: 0.25;
   pointer-events: none;
   user-select: none;
 }
