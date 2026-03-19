@@ -139,6 +139,14 @@ body {
   pointer-events: none;
 }
 
+@media (max-width: 768px) {
+  .site-header.header-hidden {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
 .header-inner {
   display: flex;
   align-items: center;
