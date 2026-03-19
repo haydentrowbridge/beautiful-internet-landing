@@ -101,7 +101,8 @@
 
     .work-approach {
       padding: 7rem 6vw;
-      border-top: 1px solid rgba(138, 130, 120, 0.2);
+      border-top: none;
+      position: relative;
     }
 
     .approach-header {
@@ -164,7 +165,8 @@
 
     .work-cta {
       padding: 6rem 6vw;
-      border-top: 1px solid rgba(138, 130, 120, 0.2);
+      border-top: none;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -192,6 +194,20 @@
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.72);
       line-height: 1.8;
+    }
+
+    /* Phosphor separator lines */
+    .work-approach::before,
+    .work-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(560px, 80vw);
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(57, 255, 20, 0.4), transparent);
+      animation: phosphor-pulse 3s ease-in-out infinite;
     }
 
     /* Reveal animations */
