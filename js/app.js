@@ -510,13 +510,13 @@ async function init() {
 
   window.addEventListener('resize', handleResize);
 
-  // Hide header during hero scroll section, show after
+  // Hide header during computer spin, show right when spin ends (60%)
   const siteHeader = document.getElementById('site-header');
   if (siteHeader && scrollCont) {
     siteHeader.classList.add('header-hidden');
     ScrollTrigger.create({
       trigger: scrollCont,
-      start: 'bottom top',
+      start: () => 'top+=' + (scrollCont.offsetHeight * P1_END) + ' top',
       onEnter: () => siteHeader.classList.remove('header-hidden'),
       onLeaveBack: () => siteHeader.classList.add('header-hidden'),
     });
