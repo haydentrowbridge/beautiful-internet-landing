@@ -36,7 +36,13 @@
       bottom: 0;
       width: min(560px, 80vw);
       height: 1px;
-      background: linear-gradient(to right, transparent, rgba(57, 255, 20, 0.3), transparent);
+      background: linear-gradient(to right, transparent, rgba(57, 255, 20, 0.4), transparent);
+      animation: phosphor-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes phosphor-pulse {
+      0%, 100% { opacity: 0.4; box-shadow: 0 0 8px rgba(57, 255, 20, 0.1); }
+      50% { opacity: 1; box-shadow: 0 0 20px rgba(57, 255, 20, 0.3), 0 0 40px rgba(57, 255, 20, 0.1); }
     }
 
     .page-hero .section-eyebrow {
@@ -72,7 +78,6 @@
 
     .work-partners {
       padding: 7rem 6vw;
-      border-top: 1px solid rgba(138, 130, 120, 0.2);
     }
 
     .work-partners-header {
