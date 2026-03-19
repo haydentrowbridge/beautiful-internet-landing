@@ -11,11 +11,11 @@
 
 const P1_COUNT  = 361;
 const P1_SRC    = (i) => `frames-360/frame_${String(i).padStart(4,'0')}.jpg`;
-const P1_END    = 0.60;
+const P1_END    = 0.25;          // 25% turn then move on
 
-// Pedestal fly-up: 60–63% — must finish before O1 enters at 64%
-const FLY_START = 0.60;
-const FLY_END   = 0.63;
+// Pedestal fly-up: right after spin ends
+const FLY_START = 0.25;
+const FLY_END   = 0.28;
 
 // ─── SECTION PANEL SEQUENCES ────────────────────────────────────
 
@@ -25,13 +25,13 @@ const P_ARCH_SRC   = (i) => `frames-arch/frame_${String(i).padStart(4,'0')}.jpg`
 const P_HAND_COUNT = 73;
 const P_HAND_SRC   = (i) => `frames-hand/frame_${String(i).padStart(4,'0')}.jpg`;
 
-// Section A (arch right panel): 64–76% — mirrors s01
-const SA_ENTER  = 0.64;
-const SA_LEAVE  = 0.76;
+// Section A (arch right panel): 30–46% — mirrors s01
+const SA_ENTER  = 0.30;
+const SA_LEAVE  = 0.46;
 
-// Section B (hand left panel): 80–90% — mirrors s02
-const SB_ENTER  = 0.80;
-const SB_LEAVE  = 0.90;
+// Section B (hand left panel): 52–68% — mirrors s02
+const SB_ENTER  = 0.52;
+const SB_LEAVE  = 0.68;
 
 const PRELOAD_THRESHOLD = 30;
 const IMAGE_SCALE  = 0.94;
