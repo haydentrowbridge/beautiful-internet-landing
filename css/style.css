@@ -559,9 +559,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Dark halo so text reads cleanly over the marble computer */
-  background: radial-gradient(ellipse 65% 85% at 50% 50%, rgba(37, 33, 24, 0.82) 25%, rgba(37, 33, 24, 0.5) 60%, transparent 85%);
   padding: 3.5rem 5rem 4rem;
+  border: 1px solid rgba(57, 255, 20, 0.35);
+  background: rgba(37, 33, 24, 0.95);
+  box-shadow:
+    0 0 12px rgba(57, 255, 20, 0.08),
+    0 0 32px rgba(57, 255, 20, 0.04),
+    inset 0 0 12px rgba(57, 255, 20, 0.03);
 }
 
 .cta-heading {
@@ -610,14 +614,11 @@ body {
   gap: 0.05rem;
 }
 
-.cta-wordmark .wm-beautiful {
-  font-size: 0.85rem;
-  opacity: 0.4;
-}
-
+.cta-wordmark .wm-beautiful,
 .cta-wordmark .wm-internet {
   font-size: 0.85rem;
-  opacity: 0.3;
+  color: var(--bi-phosphor);
+  opacity: 0.7;
 }
 
 /* ============================================
