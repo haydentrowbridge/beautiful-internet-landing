@@ -33,7 +33,7 @@
       bottom: 0;
       width: min(560px, 80vw);
       height: 1px;
-      background: linear-gradient(to right, rgba(57, 255, 20, 0.35), transparent);
+      background: linear-gradient(to right, rgba(57, 255, 20, 0.3), transparent);
     }
 
     .page-hero .section-eyebrow {
@@ -41,24 +41,26 @@
     }
 
     .page-hero-heading {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-size: clamp(3rem, 5.5vw, 5.5rem);
-      font-weight: 400;
+      font-weight: 900;
       color: var(--text);
       line-height: 1.0;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       margin-bottom: 2rem;
     }
 
     .page-hero-heading em {
-      font-style: italic;
+      font-style: normal;
       color: var(--phosphor);
     }
 
     .page-hero-body {
-      font-family: var(--font-sub);
+      font-family: var(--font-body);
+      font-weight: 500;
       font-size: 1rem;
-      color: rgba(245, 240, 232, 0.78);
+      color: rgba(255, 255, 255, 0.78);
       line-height: 1.8;
       max-width: 52ch;
     }
@@ -67,7 +69,7 @@
 
     .tiers-section {
       padding: 7rem 6vw;
-      border-top: 1px solid rgba(57, 255, 20, 0.12);
+      border-top: 1px solid rgba(138, 130, 120, 0.2);
     }
 
     .tiers-section-header {
@@ -79,7 +81,7 @@
 
     .expect-section {
       padding: 7rem 6vw;
-      border-top: 1px solid rgba(57, 255, 20, 0.12);
+      border-top: 1px solid rgba(138, 130, 120, 0.2);
     }
 
     .expect-header {
@@ -98,36 +100,39 @@
     }
 
     .expect-marker {
-      font-family: var(--font-mono);
+      font-family: var(--font-label);
+      font-weight: 700;
       font-size: 0.6rem;
-      color: var(--phosphor);
-      letter-spacing: 0.12em;
-      text-shadow: 0 0 12px rgba(57, 255, 20, 0.5);
+      color: var(--bi-phosphor);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       display: block;
       margin-bottom: 0.75rem;
     }
 
     .expect-title {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-size: clamp(1rem, 1.4vw, 1.25rem);
-      color: var(--text);
+      color: var(--bi-white);
       line-height: 1.25;
-      font-weight: 400;
+      font-weight: 700;
+      text-transform: uppercase;
       margin-bottom: 0.75rem;
     }
 
     .expect-desc {
-      font-family: var(--font-sub);
+      font-family: var(--font-body);
+      font-weight: 500;
       font-size: 0.88rem;
-      color: rgba(245, 240, 232, 0.72);
-      line-height: 1.85;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.8;
     }
 
     /* ─── CTA Strip ─── */
 
     .engage-cta {
       padding: 6rem 6vw;
-      border-top: 1px solid rgba(57, 255, 20, 0.12);
+      border-top: 1px solid rgba(138, 130, 120, 0.2);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -139,20 +144,22 @@
     }
 
     .engage-cta-heading {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-size: clamp(1.8rem, 3vw, 2.8rem);
-      color: var(--text);
+      color: var(--bi-white);
       line-height: 1.1;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       margin-bottom: 1rem;
-      font-weight: 400;
+      font-weight: 900;
     }
 
     .engage-cta-body {
-      font-family: var(--font-sub);
+      font-family: var(--font-body);
+      font-weight: 500;
       font-size: 0.9rem;
-      color: rgba(245, 240, 232, 0.72);
-      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.8;
     }
 
     /* Reveal animations */
@@ -337,7 +344,7 @@
         <span class="wm-beautiful">Beautiful</span>
         <span class="wm-internet">Internet</span>
       </div>
-      <p class="footer-tagline">Eternal Mission. Modern Expression.</p>
+      <p class="footer-tagline">Back to life.</p>
       <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ32DFpQ4ETsBVhq4pKEmA65xB7ep7M1uDpfCLAyyDNhQBA1H_2HDW5aJUzX-sZBiYgd506EWp8P" target="_blank" rel="noopener" class="footer-cta">Connect →</a>
     </div>
   </footer>

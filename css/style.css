@@ -13,23 +13,28 @@
 }
 
 :root {
-  --bg:      #0d0c0a;
-  --text:    #f5f0e8;
-  --text-dim: rgba(245, 240, 232, 0.65);
-  --steel:   #4a7a9b;
-  --stone:   rgba(245, 240, 232, 0.65);
-  --phosphor: #39ff14;
+  /* Brand color tokens v10 — three colors only */
+  --bi-dark:    #252118;
+  --bi-white:   #FFFFFF;
+  --bi-phosphor:#39ff14;
 
-  --font-display: "goudy-old-style", Georgia, serif;
-  --font-sans:    "moby", system-ui, sans-serif;
-  --font-sub:     "sweet-sans-pro", system-ui, sans-serif;
-  --font-mono:    "moby-monospace", monospace;
+  /* Aliases for codebase compatibility */
+  --bg:         var(--bi-dark);
+  --text:       var(--bi-white);
+  --phosphor:   var(--bi-phosphor);
+
+  /* Brand typography v10 — Typekit kit doc2ohu — NO Goudy */
+  --font-heading: "sweet-sans-pro", sans-serif;   /* Headings: 900 Black, ALL CAPS */
+  --font-body:    "sweet-sans-pro", sans-serif;   /* Body: 500 Medium, line-height 1.8 */
+  --font-label:   "moby", sans-serif;             /* Labels, nav, eyebrows: 700 Bold */
+  --font-mono:    "moby-monospace", monospace;    /* Code / data: 400, Phosphor on dark */
 }
 
 html {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -70,21 +75,22 @@ body {
 }
 
 .loader-beautiful {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 2.2rem;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.8rem;
   color: var(--text);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   display: block;
   line-height: 1.1;
 }
 
 .loader-internet {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--phosphor);
-  letter-spacing: 0.08em;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: var(--text);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   display: block;
   line-height: 1.1;
@@ -93,7 +99,7 @@ body {
 .loader-bar-wrap {
   width: 200px;
   height: 1px;
-  background: rgba(245, 240, 232, 0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 #loader-bar {
@@ -107,7 +113,7 @@ body {
 #loader-percent {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: rgba(245, 240, 232, 0.55);
+  color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.1em;
 }
 
@@ -128,6 +134,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .wordmark {
@@ -138,25 +147,20 @@ body {
   text-decoration: none;
 }
 
-.wm-beautiful {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.05rem;
+.wm-beautiful,
+.wm-internet {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.72rem;
   color: var(--text);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  display: block;
+  display: inline;
   line-height: 1.1;
 }
 
 .wm-internet {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--phosphor);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  display: block;
-  line-height: 1.1;
+  margin-left: 0.25em;
 }
 
 .site-nav {
@@ -166,9 +170,9 @@ body {
 }
 
 .nav-link {
-  font-family: var(--font-sans);
+  font-family: var(--font-label);
   font-size: 0.7rem;
-  color: rgba(245, 240, 232, 0.65);
+  color: rgba(255, 255, 255, 0.55);
   text-decoration: none;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -176,25 +180,24 @@ body {
 }
 
 .nav-link:hover {
-  color: var(--text);
+  color: var(--bi-white);
 }
 
 .nav-cta {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: var(--text);
+  color: var(--bi-white);
   text-decoration: none;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 1px solid rgba(245, 240, 232, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 0.55rem 1.25rem;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .nav-cta:hover {
-  border-color: var(--phosphor);
-  color: var(--phosphor);
-  box-shadow: 0 0 18px rgba(57, 255, 20, 0.18);
+  border-color: var(--bi-phosphor);
+  color: var(--bi-phosphor);
 }
 
 /* ============================================
@@ -254,13 +257,13 @@ body {
     radial-gradient(
       ellipse 80% 80% at 50% 50%,
       transparent 35%,
-      rgba(13, 12, 10, 0.55) 75%,
-      rgba(13, 12, 10, 0.88) 100%
+      rgba(37, 33, 24, 0.55) 75%,
+      rgba(37, 33, 24, 0.88) 100%
     ),
     linear-gradient(
       to top,
-      rgba(13, 12, 10, 0.82) 0%,
-      rgba(13, 12, 10, 0.3) 35%,
+      rgba(37, 33, 24, 0.82) 0%,
+      rgba(37, 33, 24, 0.3) 35%,
       transparent 60%
     );
   pointer-events: none;
@@ -273,7 +276,7 @@ body {
   right: 0;
   width: 420px;
   height: 100px;
-  background: linear-gradient(to left, #0d0c0a 52%, transparent 100%);
+  background: linear-gradient(to left, #252118 52%, transparent 100%);
   pointer-events: none;
 }
 
@@ -281,7 +284,34 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, #0d0c0a 52%, transparent 100%);
+  background: linear-gradient(to top, #252118 52%, transparent 100%);
+}
+
+/* ============================================
+   SECTION IMAGE PANELS (fixed, scroll-driven opacity)
+   ============================================ */
+
+.section-img-panel {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 62vw;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.panel-right { right: 0; }
+.panel-left  { left:  0; }
+
+.section-img-panel canvas {
+  width: 100%;
+  height: 100%;
 }
 
 /* ============================================
@@ -292,7 +322,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 2;
-  background: rgba(13, 12, 10, 0.86);
+  background: rgba(37, 33, 24, 0.86);
   opacity: 0;
   pointer-events: none;
   will-change: opacity;
@@ -336,18 +366,18 @@ body {
 .align-left {
   justify-content: flex-start;
   padding-left: 5.5vw;
-  padding-right: 56vw;
+  padding-right: 64vw;
 }
 
 .align-right {
   justify-content: flex-end;
-  padding-left: 56vw;
+  padding-left: 64vw;
   padding-right: 5.5vw;
 }
 
 .section-inner {
   padding: 3rem 2.5rem;
-  background: rgba(8, 8, 8, 0.72);
+  background: rgba(37, 33, 24, 0.72);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   border-left: 2px solid rgba(57, 255, 20, 0.3);
@@ -359,42 +389,42 @@ body {
   display: block;
   font-family: var(--font-mono);
   font-size: 0.62rem;
-  color: var(--steel);
+  color: var(--bi-phosphor);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
-  text-shadow: 0 0 18px rgba(57, 255, 20, 0.3);
 }
 
 .section-heading {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 5.5vw, 5.75rem);
-  font-weight: 400;
-  color: var(--text);
-  line-height: 1.06;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 4.5vw, 4.75rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bi-white);
+  line-height: 1.0;
   margin-bottom: 1.4rem;
-  text-shadow: 0 2px 30px rgba(8,8,8,0.9), 0 0 60px rgba(8,8,8,0.7);
 }
 
 .section-body {
-  font-family: var(--font-sub);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 0.9rem;
-  color: rgba(245, 240, 232, 0.88);
+  color: var(--bi-white);
   line-height: 1.8;
   max-width: 36ch;
-  text-shadow: 0 1px 12px rgba(8, 8, 8, 0.95), 0 0 40px rgba(8, 8, 8, 0.85);
 }
 
 /* ─── Blockquote ─── */
 
 .section-quote {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 400;
   font-style: italic;
   font-size: clamp(1.15rem, 1.9vw, 1.65rem);
   color: var(--text);
   line-height: 1.45;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
   margin-bottom: 0.8rem;
 }
 
@@ -402,7 +432,7 @@ body {
   display: block;
   font-family: var(--font-mono);
   font-size: 0.62rem;
-  color: var(--steel);
+  color: rgba(255, 255, 255, 0.5);
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
 }
@@ -410,20 +440,20 @@ body {
 /* ─── Section sub (italic support line) ─── */
 
 .section-sub {
-  font-family: var(--font-sub);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: clamp(0.9rem, 1.2vw, 1.05rem);
-  color: rgba(245, 240, 232, 0.82);
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.55;
   max-width: 38ch;
   margin-top: 1rem;
-  text-shadow: 0 1px 12px rgba(8, 8, 8, 0.95), 0 0 40px rgba(8, 8, 8, 0.85);
 }
 
 /* ─── Tagline hero (Eternal Mission. Modern Expression.) ─── */
 
 .tagline-hero {
-  font-family: var(--font-sub);
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-weight: 900;
   font-size: clamp(2.4rem, 4.5vw, 4.2rem);
   color: var(--phosphor);
   text-transform: uppercase;
@@ -436,7 +466,7 @@ body {
     0 0 120px rgba(57, 255, 20, 0.25);
 }
 
-/* ─── Hero text stack (scroll-revealed) ─── */
+/* ─── Hero text stack (static) ─── */
 
 #hero-text-stack {
   position: fixed;
@@ -453,38 +483,29 @@ body {
 }
 
 .tl-line {
-  opacity: 0;
-  will-change: opacity;
+  opacity: 1;
   line-height: 1.0;
   text-align: center;
 }
 
-.tl-eternal,
-.tl-modern {
-  font-family: var(--font-sub);
-  font-weight: 700;
-  font-size: clamp(2.6rem, 5.5vw, 6rem);
+.tl-tagline {
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem, 1.2vw, 1rem);
+  font-weight: 400;
   color: var(--phosphor);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  text-shadow:
-    0 0 30px rgba(57, 255, 20, 0.95),
-    0 0 70px rgba(57, 255, 20, 0.55),
-    0 0 140px rgba(57, 255, 20, 0.25);
+  text-align: center;
+  opacity: 0.85;
 }
 
 .tl-beautiful {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(2.8rem, 5.8vw, 6.5rem);
-  color: #ffffff;
-  letter-spacing: -0.01em;
-  text-shadow:
-    0 0 30px rgba(255, 255, 255, 0.9),
-    0 0 70px rgba(255, 255, 255, 0.5),
-    0 0 140px rgba(255, 255, 255, 0.2),
-    0 0 240px rgba(57, 255, 20, 0.15);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(3rem, 6.2vw, 7rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bi-white);
 }
 
 /* ─── Welcome / centered alignment ─── */
@@ -498,7 +519,7 @@ body {
 .welcome-inner {
   text-align: left;
   max-width: 600px;
-  background: rgba(8, 8, 8, 0.82);
+  background: rgba(37, 33, 24, 0.82);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-left: 2px solid rgba(57, 255, 20, 0.45);
@@ -519,7 +540,7 @@ body {
 
 .welcome-inner .section-body {
   max-width: none;
-  color: var(--text);
+  color: var(--bi-white);
 }
 
 /* ─── CTA ─── */
@@ -534,17 +555,13 @@ body {
   flex-direction: column;
   align-items: center;
   /* Dark halo so text reads cleanly over the marble computer */
-  background: radial-gradient(ellipse 65% 85% at 50% 50%, rgba(8,8,8,0.82) 25%, rgba(8,8,8,0.5) 60%, transparent 85%);
+  background: radial-gradient(ellipse 65% 85% at 50% 50%, rgba(37, 33, 24, 0.82) 25%, rgba(37, 33, 24, 0.5) 60%, transparent 85%);
   padding: 3.5rem 5rem 4rem;
 }
 
 .cta-heading {
   font-size: clamp(2.8rem, 5.5vw, 5rem);
   margin-bottom: 1.5rem;
-  text-shadow:
-    0 0 60px rgba(8, 8, 8, 0.9),
-    0 4px 40px rgba(8, 8, 8, 0.8),
-    0 0 120px rgba(8, 8, 8, 0.7);
 }
 
 .cta-body {
@@ -564,18 +581,16 @@ body {
   text-decoration: none;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: var(--steel);
-  border: 1px solid var(--steel);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 1rem 2.75rem;
   margin-bottom: 3.5rem;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .cta-button:hover {
-  background: var(--phosphor);
-  border-color: var(--phosphor);
-  color: var(--bg);
-  box-shadow: 0 0 32px rgba(57, 255, 20, 0.35), 0 0 80px rgba(57, 255, 20, 0.15);
+  border-color: var(--bi-phosphor);
+  color: var(--bi-phosphor);
 }
 
 .cta-button:focus-visible {
@@ -591,12 +606,61 @@ body {
 }
 
 .cta-wordmark .wm-beautiful {
-  font-size: 1.5rem;
+  font-size: 0.85rem;
   opacity: 0.4;
 }
 
 .cta-wordmark .wm-internet {
+  font-size: 0.85rem;
   opacity: 0.3;
+}
+
+/* ============================================
+   LIGHT SECTION — #FFFFFF background
+   ============================================ */
+
+.light-section,
+.below-fold.light-section {
+  background: var(--bi-white);
+  border-top: 1px solid rgba(37, 33, 24, 0.08);
+  border-bottom: 1px solid rgba(37, 33, 24, 0.08);
+}
+
+.light-section .section-eyebrow {
+  color: var(--bi-dark);
+}
+
+.light-section .below-heading {
+  color: var(--bi-dark);
+}
+
+.light-section .partners-intro {
+  color: rgba(37, 33, 24, 0.72);
+}
+
+.light-section .partner-name {
+  color: var(--bi-dark);
+}
+
+.light-section .partner-location {
+  color: rgba(37, 33, 24, 0.55);
+}
+
+.light-section .partner-desc {
+  color: rgba(37, 33, 24, 0.72);
+}
+
+.light-section .partner-number {
+  color: var(--bi-dark);
+  text-shadow: none;
+}
+
+.light-section .partner-row {
+  border-color: rgba(37, 33, 24, 0.1);
+}
+
+.light-section .partner-row:last-child {
+  border-color: rgba(37, 33, 24, 0.1);
 }
 
 /* ============================================
@@ -614,52 +678,57 @@ body {
 
 .partners-section {
   padding: 8rem 6vw;
-  border-top: 1px solid rgba(57, 255, 20, 0.12);
+  border-top: 1px solid rgba(138, 130, 120, 0.2);
+  position: relative;
 }
+
 
 .partners-header {
   max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 5rem;
 }
 
 .section-eyebrow {
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
+  font-weight: 700;
   font-size: 0.62rem;
-  color: var(--phosphor);
-  letter-spacing: 0.14em;
+  color: var(--bi-phosphor);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 16px rgba(57, 255, 20, 0.55);
 }
 
 .below-heading {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3vw, 2.75rem);
-  font-weight: 400;
-  color: var(--text);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bi-white);
+  line-height: 1.15;
 }
 
-.below-heading em,
-.below-heading .heading-goudy {
-  font-family: var(--font-display);
+.below-heading em {
   font-style: normal;
-  color: var(--text);
 }
 
 .partners-intro {
-  font-family: var(--font-sub);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 0.88rem;
-  color: rgba(245, 240, 232, 0.75);
-  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.8;
   margin-top: 1.25rem;
   max-width: 52ch;
 }
 
 .partners-list {
   max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .partner-row {
@@ -667,21 +736,20 @@ body {
   grid-template-columns: 2.5rem 1fr 1fr;
   gap: 1.5rem 3rem;
   padding: 2.5rem 0;
-  border-top: 1px solid rgba(245, 240, 232, 0.07);
+  border-top: 1px solid rgba(138, 130, 120, 0.2);
   align-items: start;
 }
 
 .partner-row:last-child {
-  border-bottom: 1px solid rgba(245, 240, 232, 0.07);
+  border-bottom: 1px solid rgba(138, 130, 120, 0.2);
 }
 
 .partner-number {
   font-family: var(--font-mono);
   font-size: 0.6rem;
-  color: var(--phosphor);
+  color: var(--bi-phosphor);
   letter-spacing: 0.1em;
   padding-top: 0.2rem;
-  text-shadow: 0 0 12px rgba(57, 255, 20, 0.5);
 }
 
 .partner-info {
@@ -691,8 +759,11 @@ body {
 }
 
 .partner-name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: clamp(1rem, 1.3vw, 1.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--text);
   line-height: 1.2;
 }
@@ -700,34 +771,56 @@ body {
 .partner-location {
   font-family: var(--font-mono);
   font-size: 0.58rem;
-  color: rgba(245, 240, 232, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   letter-spacing: 0.1em;
 }
 
 .partner-desc {
-  font-family: var(--font-sub);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 0.88rem;
-  color: rgba(245, 240, 232, 0.72);
-  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.8;
 }
 
 /* ─── Engagement tiers section ─── */
 
 .engagement-section {
   padding: 8rem 6vw;
-  border-top: 1px solid rgba(57, 255, 20, 0.12);
+  border-top: 1px solid rgba(138, 130, 120, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Arch with flowers — ghosted atmosphere behind tiers */
+
+.arch-sculpture {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 75%;
+  width: auto;
+  mix-blend-mode: screen;
+  opacity: 0.14;
+  pointer-events: none;
+  user-select: none;
 }
 
 .engagement-header {
   max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 5rem;
 }
 
 .tiers-list {
   max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border: 1px solid rgba(245, 240, 232, 0.07);
+  border: 1px solid rgba(138, 130, 120, 0.18);
 }
 
 .tier-row {
@@ -735,7 +828,7 @@ body {
   flex-direction: column;
   gap: 1.25rem;
   padding: 2.75rem 2.25rem;
-  border-right: 1px solid rgba(245, 240, 232, 0.07);
+  border-right: 1px solid rgba(138, 130, 120, 0.18);
   align-items: flex-start;
 }
 
@@ -746,10 +839,9 @@ body {
 .tier-number {
   font-family: var(--font-mono);
   font-size: 0.6rem;
-  color: var(--phosphor);
+  color: var(--bi-phosphor);
   letter-spacing: 0.1em;
   padding-top: 0.25rem;
-  text-shadow: 0 0 12px rgba(57, 255, 20, 0.5);
 }
 
 .tier-info {
@@ -759,26 +851,29 @@ body {
 }
 
 .tier-title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: clamp(1rem, 1.3vw, 1.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--text);
   line-height: 1.2;
-  font-weight: 400;
 }
 
 .tier-commitment {
   font-family: var(--font-mono);
   font-size: 0.6rem;
-  color: var(--steel);
+  color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.08em;
   line-height: 1.6;
 }
 
 .tier-desc {
-  font-family: var(--font-sub);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 0.88rem;
-  color: rgba(245, 240, 232, 0.72);
-  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.8;
   margin-bottom: 1rem;
 }
 
@@ -792,7 +887,7 @@ body {
 .tier-includes li {
   font-family: var(--font-mono);
   font-size: 0.6rem;
-  color: rgba(245, 240, 232, 0.75);
+  color: rgba(255, 255, 255, 0.75);
   letter-spacing: 0.04em;
   display: flex;
   align-items: baseline;
@@ -801,7 +896,7 @@ body {
 
 .tier-includes li::before {
   content: '›';
-  color: var(--steel);
+  color: rgba(255, 255, 255, 0.45);
   flex-shrink: 0;
 }
 
@@ -812,13 +907,16 @@ body {
   gap: 1rem;
   margin-top: auto;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(245, 240, 232, 0.07);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
   width: 100%;
 }
 
 .tier-price {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--text);
   white-space: nowrap;
   text-align: left;
@@ -828,25 +926,114 @@ body {
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.6rem;
-  color: var(--steel);
+  color: rgba(255, 255, 255, 0.65);
   text-decoration: none;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border: 1px solid rgba(74, 122, 155, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 0.6rem 1.1rem;
   white-space: nowrap;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .tier-cta:hover {
-  border-color: var(--phosphor);
-  color: var(--phosphor);
-  box-shadow: 0 0 18px rgba(57, 255, 20, 0.18);
+  border-color: var(--bi-phosphor);
+  color: var(--bi-phosphor);
 }
 
 .tier-cta:focus-visible {
-  outline: 2px solid var(--steel);
+  outline: 2px solid var(--bi-phosphor);
   outline-offset: 3px;
+}
+
+/* ─── About section ─── */
+
+.about-section {
+  padding: 8rem 6vw;
+  border-top: 1px solid rgba(138, 130, 120, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Marble hand with flowers — "back to life" anchor image */
+
+.about-sculpture {
+  position: absolute;
+  right: -4%;
+  bottom: -8%;
+  height: 110%;
+  width: auto;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+}
+
+.about-content {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.about-body {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.8;
+  margin-top: 2rem;
+  max-width: 60ch;
+}
+
+.about-sub {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.8;
+  margin-top: 1.5rem;
+  max-width: 58ch;
+}
+
+/* ─── Tier subtitle ─── */
+
+.tier-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--phosphor);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+
+/* ─── Tier framing ─── */
+
+.tier-framing {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.8;
+  margin-top: 1.5rem;
+  max-width: 58ch;
+}
+
+/* ─── Logo image ─── */
+
+.logo-img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.footer-logo-img {
+  height: 24px;
+  width: auto;
+  display: block;
+  opacity: 0.45;
 }
 
 /* ─── Footer ─── */
@@ -854,8 +1041,8 @@ body {
 .site-footer {
   position: relative;
   z-index: 10;
-  background: var(--bg);
-  border-top: 1px solid rgba(245, 240, 232, 0.06);
+  background: var(--bi-dark);
+  border-top: 1px solid rgba(138, 130, 120, 0.15);
   padding: 4rem 6vw;
 }
 
@@ -863,6 +1050,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footer-wordmark {
@@ -873,28 +1063,28 @@ body {
 }
 
 .footer-wordmark .wm-beautiful {
-  font-size: 1.1rem;
+  font-size: 0.72rem;
   opacity: 0.5;
 }
 
 .footer-wordmark .wm-internet {
+  font-size: 0.72rem;
   opacity: 0.4;
 }
 
 .footer-tagline {
-  font-family: var(--font-sub);
-  font-size: 0.9rem;
-  color: var(--phosphor);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  opacity: 0.7;
-  text-shadow: 0 0 20px rgba(57, 255, 20, 0.45);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
 }
 
 .footer-cta {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: rgba(245, 240, 232, 0.7);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -969,7 +1159,7 @@ body {
     right: 0;
     bottom: 0;
     z-index: 199;
-    background: rgba(13, 12, 10, 0.98);
+    background: rgba(37, 33, 24, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
@@ -983,11 +1173,13 @@ body {
   }
 
   .mobile-nav a {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
+    font-weight: 900;
     font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: var(--text);
     text-decoration: none;
-    letter-spacing: -0.01em;
     transition: color 0.2s ease;
   }
 
@@ -1005,7 +1197,7 @@ body {
     font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    border: 1px solid rgba(245, 240, 232, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 0.75rem 2rem;
     margin-top: 1rem;
   }
@@ -1018,7 +1210,7 @@ body {
 
   .site-header {
     padding: 1rem 1.5rem;
-    background: rgba(13, 12, 10, 0.96);
+    background: rgba(37, 33, 24, 0.96);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(57, 255, 20, 0.08);
@@ -1084,7 +1276,7 @@ body {
   }
   .tier-row {
     border-right: none;
-    border-bottom: 1px solid rgba(245, 240, 232, 0.07);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   }
   .tier-row:last-child {
     border-bottom: none;
@@ -1096,4 +1288,9 @@ body {
   }
 
   .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+
+  /* Imagery — mobile */
+  .about-sculpture { display: none; }
+  .arch-sculpture  { opacity: 0.08; height: 50%; }
+  .section-img-panel { display: none; }
 }

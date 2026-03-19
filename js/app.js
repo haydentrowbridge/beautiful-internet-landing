@@ -1,55 +1,39 @@
 /* ================================================================
-   Beautiful Internet v4 — Scroll-Driven Video Landing Page
+   Beautiful Internet v6 — Scroll-Driven Video Landing Page
+   Main canvas: 360-spin
+   Section panels: arch (right) + hand (left) — scroll-driven
    Lenis + GSAP + ScrollTrigger
    ================================================================ */
 
 'use strict';
 
-// ─── CONSTANTS ─────────────────────────────────────────────────
+// ─── MAIN CANVAS — 360 spin ─────────────────────────────────────
 
-// Phase 2: 360 spin (361 frames)
-const P2_COUNT  = 361;
-const P2_SRC    = (i) => `frames-360/frame_${String(i).padStart(4,'0')}.jpg`;
-
-const TOTAL_FRAMES = P2_COUNT;
-
-// Section canvases: like.mp4 (right) + phone.mp4 (left) — 121 frames each
-const LIKE_COUNT  = 121;
-const PHONE_COUNT = 121;
-const LIKE_SRC    = (i) => `frames-like/frame_${String(i).padStart(4,'0')}.jpg`;
-const PHONE_SRC   = (i) => `frames-phone/frame_${String(i).padStart(4,'0')}.jpg`;
-
-// Scroll allocation: 360 spin occupies 0–65%
-const P2_START  = 0.00;
-const P2_END    = 0.65;
+const P1_COUNT  = 361;
+const P1_SRC    = (i) => `frames-360/frame_${String(i).padStart(4,'0')}.jpg`;
+const P1_END    = 0.65;
 
 // Pedestal fly-up: 65–68%
 const FLY_START = 0.65;
 const FLY_END   = 0.68;
 
-// Section A (like frames, right): 68–79% — mirrors s01
+// ─── SECTION PANEL SEQUENCES ────────────────────────────────────
+
+const P_ARCH_COUNT = 73;
+const P_ARCH_SRC   = (i) => `frames-arch/frame_${String(i).padStart(4,'0')}.jpg`;
+
+const P_HAND_COUNT = 73;
+const P_HAND_SRC   = (i) => `frames-hand/frame_${String(i).padStart(4,'0')}.jpg`;
+
+// Section A (arch right panel): 68–79% — mirrors s01
 const SA_ENTER  = 0.68;
 const SA_LEAVE  = 0.79;
 
-// Section B (phone frames, left): 81–91% — mirrors s02
+// Section B (hand left panel): 81–91% — mirrors s02
 const SB_ENTER  = 0.81;
 const SB_LEAVE  = 0.91;
 
-// Hero text reveal keypoints (within 0–65% spin range)
-const ETERNAL_IN_START   = 0.04;
-const ETERNAL_IN_END     = 0.10;
-const MODERN_IN_START    = 0.28;
-const MODERN_IN_END      = 0.34;
-const BEAUTIFUL_IN_START = 0.52;
-const BEAUTIFUL_IN_END   = 0.58;
-
-// Stack fades out near end
-const TL_FADE_START = 0.88;
-const TL_FADE_END   = 0.95;
-
-// Number of frames to load before unblocking the loader
 const PRELOAD_THRESHOLD = 30;
-
 const IMAGE_SCALE  = 0.94;
 const BG_FALLBACK  = '#080808';
 
@@ -61,23 +45,15 @@ const loaderPct  = $('loader-percent');
 const canvasWrap    = $('canvas-wrap');
 const canvas        = $('canvas');
 const ctx           = canvas.getContext('2d');
-const darkOverlay   = $('dark-overlay');
 const scrollCont    = $('scroll-container');
 const heroTextStack = $('hero-text-stack');
-const tlEternal     = $('tl-eternal');
-const tlModern      = $('tl-modern');
-const tlBeautiful   = $('tl-beautiful');
-
-// Section canvases
-const canvasLike  = $('canvas-like');
-const ctxLike     = canvasLike.getContext('2d');
-const canvasPhone = $('canvas-phone');
-const ctxPhone    = canvasPhone.getContext('2d');
+const sectionImgRight = $('section-img-right');
+const sectionImgLeft  = $('section-img-left');
 
 // ─── STATE ──────────────────────────────────────────────────────
-const p2Frames    = new Array(P2_COUNT).fill(null);
-const likeFrames  = new Array(LIKE_COUNT).fill(null);
-const phoneFrames = new Array(PHONE_COUNT).fill(null);
+const p1Frames   = new Array(P1_COUNT).fill(null);
+const archFrames = new Array(P_ARCH_COUNT).fill(null);
+const handFrames = new Array(P_HAND_COUNT).fill(null);
 
 let currentFrame = 0;
 let sampledBg    = BG_FALLBACK;
@@ -97,23 +73,20 @@ function setupCanvas() {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
 
-function setupSectionCanvases() {
-  const dpr     = window.devicePixelRatio || 1;
-  const mobile  = window.innerWidth <= 768;
-  const w       = mobile ? window.innerWidth : Math.round(window.innerWidth / 2);
-  const h       = window.innerHeight;
+/* ================================================================
+   PANEL CANVAS SETUP
+   ================================================================ */
 
-  canvasLike.width  = w * dpr;
-  canvasLike.height = h * dpr;
-  canvasLike.style.width  = w + 'px';
-  canvasLike.style.height = h + 'px';
-  ctxLike.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-  canvasPhone.width  = w * dpr;
-  canvasPhone.height = h * dpr;
-  canvasPhone.style.width  = w + 'px';
-  canvasPhone.style.height = h + 'px';
-  ctxPhone.setTransform(dpr, 0, 0, dpr, 0, 0);
+function setupPanelCanvas(panelCanvas) {
+  const dpr = window.devicePixelRatio || 1;
+  const w   = panelCanvas.offsetWidth;
+  const h   = panelCanvas.offsetHeight;
+  panelCanvas.width  = w * dpr;
+  panelCanvas.height = h * dpr;
+  panelCanvas.style.width  = w + 'px';
+  panelCanvas.style.height = h + 'px';
+  const pCtx = panelCanvas.getContext('2d');
+  pCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
 
 /* ================================================================
@@ -122,23 +95,23 @@ function setupSectionCanvases() {
 
 function sampleBgColor(img) {
   try {
-    const tmp   = document.createElement('canvas');
-    tmp.width   = 4; tmp.height = 4;
-    const t     = tmp.getContext('2d');
+    const tmp = document.createElement('canvas');
+    tmp.width = 4; tmp.height = 4;
+    const t   = tmp.getContext('2d');
     t.drawImage(img, 0, 0, 4, 4);
-    const d     = t.getImageData(0, 0, 1, 1).data;
+    const d   = t.getImageData(0, 0, 1, 1).data;
     if (d[0] < 30 && d[1] < 30 && d[2] < 30) {
       sampledBg = `rgb(${d[0]},${d[1]},${d[2]})`;
     }
-  } catch (e) { /* cross-origin safety */ }
+  } catch (e) {}
 }
 
 /* ================================================================
-   DRAW FRAME — cover mode with IMAGE_SCALE padding
+   DRAW — main canvas (cover mode)
    ================================================================ */
 
 function drawFrame(index) {
-  const img = p2Frames[index];
+  const img = p1Frames[index];
   if (!img) return;
 
   const cw    = window.innerWidth;
@@ -156,102 +129,119 @@ function drawFrame(index) {
   ctx.drawImage(img, dx, dy, dw, dh);
 }
 
-function drawLikeFrame(index) {
-  const img = likeFrames[index];
-  if (!img) return;
+/* ================================================================
+   REMOVE BLACK BACKGROUND — process once on frame load
+   Returns an offscreen canvas with black pixels made transparent
+   ================================================================ */
 
-  const cw    = window.innerWidth <= 768 ? window.innerWidth : Math.round(window.innerWidth / 2);
-  const ch    = window.innerHeight;
-  const iw    = img.naturalWidth;
-  const ih    = img.naturalHeight;
-  const scale = Math.max(cw / iw, ch / ih) * IMAGE_SCALE;
-  const dw    = iw * scale;
-  const dh    = ih * scale;
-  const dx    = (cw - dw) / 2;
-  const dy    = (ch - dh) / 2;
-
-  ctxLike.fillStyle = sampledBg;
-  ctxLike.fillRect(0, 0, cw, ch);
-  ctxLike.drawImage(img, dx, dy, dw, dh);
-}
-
-function drawPhoneFrame(index) {
-  const img = phoneFrames[index];
-  if (!img) return;
-
-  const cw    = window.innerWidth <= 768 ? window.innerWidth : Math.round(window.innerWidth / 2);
-  const ch    = window.innerHeight;
-  const iw    = img.naturalWidth;
-  const ih    = img.naturalHeight;
-  const scale = Math.max(cw / iw, ch / ih) * IMAGE_SCALE;
-  const dw    = iw * scale;
-  const dh    = ih * scale;
-  const dx    = (cw - dw) / 2;
-  const dy    = (ch - dh) / 2;
-
-  ctxPhone.fillStyle = sampledBg;
-  ctxPhone.fillRect(0, 0, cw, ch);
-  ctxPhone.drawImage(img, dx, dy, dw, dh);
+function removeBlackBg(img) {
+  const oc  = document.createElement('canvas');
+  oc.width  = img.naturalWidth;
+  oc.height = img.naturalHeight;
+  const c   = oc.getContext('2d');
+  c.drawImage(img, 0, 0);
+  const d   = c.getImageData(0, 0, oc.width, oc.height);
+  const px  = d.data;
+  for (let i = 0; i < px.length; i += 4) {
+    const brightness = Math.max(px[i], px[i + 1], px[i + 2]);
+    if (brightness < 22) {
+      px[i + 3] = 0;                                        // fully transparent
+    } else if (brightness < 65) {
+      px[i + 3] = Math.round((brightness - 22) / 43 * 255); // soft edge fade-in
+    }
+  }
+  c.putImageData(d, 0, 0);
+  return oc;
 }
 
 /* ================================================================
-   PRELOADER — load 360 frames, unblock after PRELOAD_THRESHOLD
+   DRAW — panel canvas (contain mode, transparent bg)
    ================================================================ */
+
+function drawPanelFrame(panelCanvas, frames, index) {
+  const frame = frames[index];
+  if (!frame) return;
+
+  const pCtx = panelCanvas.getContext('2d');
+  const cw   = panelCanvas.offsetWidth;
+  const ch   = panelCanvas.offsetHeight;
+  const iw   = frame.width  || frame.naturalWidth;
+  const ih   = frame.height || frame.naturalHeight;
+  const scale = Math.min(cw / iw, ch / ih);
+  const dw   = iw * scale;
+  const dh   = ih * scale;
+  const dx   = (cw - dw) / 2;
+  const dy   = (ch - dh) / 2;
+
+  pCtx.clearRect(0, 0, cw, ch);
+  pCtx.drawImage(frame, dx, dy, dw, dh);
+}
+
+/* ================================================================
+   PRELOADER
+   ================================================================ */
+
+function loadSequence(frames, count, srcFn, onProgress, process = false) {
+  for (let i = 1; i <= count; i++) {
+    const img = new Image();
+    const idx = i - 1;
+    img.onload  = () => {
+      frames[idx] = process ? removeBlackBg(img) : img;
+      onProgress && onProgress();
+    };
+    img.onerror = () => { onProgress && onProgress(); };
+    img.src = srcFn(i);
+  }
+}
 
 function preloadFrames() {
   return new Promise((resolve) => {
-    let done         = 0;
-    let unblocked    = false;
+    let p1Done    = 0;
+    let unblocked = false;
+    let totalDone = 0;
+    const TOTAL   = P1_COUNT + P_ARCH_COUNT + P_HAND_COUNT;
 
-    for (let i = 1; i <= P2_COUNT; i++) {
+    const updateBar = () => {
+      totalDone++;
+      const pct = Math.round((totalDone / TOTAL) * 100);
+      loaderBar.style.width  = pct + '%';
+      loaderPct.textContent  = pct + '%';
+    };
+
+    // P1 — main canvas spin
+    for (let i = 1; i <= P1_COUNT; i++) {
       const img = new Image();
       const idx = i - 1;
       img.onload = () => {
-        p2Frames[idx] = img;
+        p1Frames[idx] = img;
         if (idx === 0) { sampleBgColor(img); drawFrame(0); }
         if (idx % 30 === 0) sampleBgColor(img);
-        done++;
-        const pct = Math.round((done / TOTAL_FRAMES) * 100);
-        loaderBar.style.width   = pct + '%';
-        loaderPct.textContent   = pct + '%';
-        if (!unblocked && done >= PRELOAD_THRESHOLD) {
+        p1Done++;
+        updateBar();
+        if (!unblocked && p1Done >= PRELOAD_THRESHOLD) {
           unblocked = true;
           resolve();
         }
       };
       img.onerror = () => {
-        done++;
-        if (!unblocked && done >= PRELOAD_THRESHOLD) {
+        p1Done++;
+        updateBar();
+        if (!unblocked && p1Done >= PRELOAD_THRESHOLD) {
           unblocked = true;
           resolve();
         }
       };
-      img.src = P2_SRC(i);
+      img.src = P1_SRC(i);
     }
+
+    // Arch + hand load in parallel immediately, with black bg removed
+    loadSequence(archFrames, P_ARCH_COUNT, P_ARCH_SRC, updateBar, true);
+    loadSequence(handFrames, P_HAND_COUNT, P_HAND_SRC, updateBar, true);
   });
 }
 
-/* Non-blocking background preloads for section canvases */
-function preloadLikeFrames() {
-  for (let i = 1; i <= LIKE_COUNT; i++) {
-    const img = new Image();
-    const idx = i - 1;
-    img.onload = () => { likeFrames[idx] = img; };
-    img.src = LIKE_SRC(i);
-  }
-}
-
-function preloadPhoneFrames() {
-  for (let i = 1; i <= PHONE_COUNT; i++) {
-    const img = new Image();
-    const idx = i - 1;
-    img.onload = () => { phoneFrames[idx] = img; };
-    img.src = PHONE_SRC(i);
-  }
-}
-
 /* ================================================================
-   POSITION SECTIONS — absolute within scroll-container
+   POSITION SECTIONS
    ================================================================ */
 
 function positionSections() {
@@ -267,7 +257,7 @@ function positionSections() {
 }
 
 /* ================================================================
-   FRAME ANIMATION — maps scroll progress → frame index
+   MAIN CANVAS FRAME ANIMATION (360 spin)
    ================================================================ */
 
 function initFrameAnimation() {
@@ -280,11 +270,11 @@ function initFrameAnimation() {
       const p = self.progress;
       let frameIndex;
 
-      if (p <= P2_END) {
-        const t = p / P2_END;
-        frameIndex = Math.min(Math.floor(t * P2_COUNT), P2_COUNT - 1);
+      if (p <= P1_END) {
+        const t = p / P1_END;
+        frameIndex = Math.min(Math.floor(t * P1_COUNT), P1_COUNT - 1);
       } else {
-        frameIndex = P2_COUNT - 1;
+        frameIndex = P1_COUNT - 1;
       }
 
       if (frameIndex !== currentFrame) {
@@ -296,7 +286,7 @@ function initFrameAnimation() {
 }
 
 /* ================================================================
-   PEDESTAL FLY-UP — canvas + taglines slide up off screen
+   PEDESTAL FLY-UP
    ================================================================ */
 
 function initPedestalFlyUp() {
@@ -312,8 +302,7 @@ function initPedestalFlyUp() {
         canvasWrap.style.transform    = 'translateY(0)';
         heroTextStack.style.transform = 'translateY(0)';
       } else if (p <= FLY_END) {
-        const t = (p - FLY_START) / (FLY_END - FLY_START);
-        // Smoothstep ease
+        const t    = (p - FLY_START) / (FLY_END - FLY_START);
         const ease = t * t * (3 - 2 * t);
         canvasWrap.style.transform    = `translateY(${-ease * 110}vh)`;
         heroTextStack.style.transform = `translateY(${-ease * 110}vh)`;
@@ -326,10 +315,19 @@ function initPedestalFlyUp() {
 }
 
 /* ================================================================
-   SECTION CANVAS ANIMATIONS — frame-image scroll-scrub
+   PANEL CANVAS ANIMATIONS (arch right + hand left)
    ================================================================ */
 
-function initSectionCanvases() {
+function initPanelAnimations() {
+  const archCanvas = $('arch-panel-canvas');
+  const handCanvas = $('hand-panel-canvas');
+
+  setupPanelCanvas(archCanvas);
+  setupPanelCanvas(handCanvas);
+
+  let lastArchFrame = -1;
+  let lastHandFrame = -1;
+
   ScrollTrigger.create({
     trigger: scrollCont,
     start: 'top top',
@@ -338,36 +336,42 @@ function initSectionCanvases() {
     onUpdate: (self) => {
       const p = self.progress;
 
-      // ── canvas-like (right, like frames — s01 range) ──
+      // ── Arch (right panel) — SA range ──
       if (p >= SA_ENTER - 0.015 && p <= SA_LEAVE + 0.015) {
-        const clampedP = Math.max(0, Math.min(1, (p - SA_ENTER) / (SA_LEAVE - SA_ENTER)));
-        const rawOpacity = p < SA_ENTER
+        const raw = p < SA_ENTER
           ? (p - (SA_ENTER - 0.015)) / 0.015
           : p > SA_LEAVE
             ? 1 - (p - SA_LEAVE) / 0.015
             : 1;
-        canvasLike.style.opacity = Math.max(0, Math.min(1, rawOpacity));
+        sectionImgRight.style.opacity = Math.max(0, Math.min(1, raw));
 
-        const idx = Math.min(Math.floor(clampedP * LIKE_COUNT), LIKE_COUNT - 1);
-        requestAnimationFrame(() => drawLikeFrame(idx));
+        const t = Math.max(0, Math.min(1, (p - SA_ENTER) / (SA_LEAVE - SA_ENTER)));
+        const fi = Math.min(Math.floor(t * P_ARCH_COUNT), P_ARCH_COUNT - 1);
+        if (fi !== lastArchFrame) {
+          lastArchFrame = fi;
+          requestAnimationFrame(() => drawPanelFrame(archCanvas, archFrames, fi));
+        }
       } else {
-        canvasLike.style.opacity = '0';
+        sectionImgRight.style.opacity = '0';
       }
 
-      // ── canvas-phone (left, phone frames — s02 range) ──
+      // ── Hand (left panel) — SB range ──
       if (p >= SB_ENTER - 0.015 && p <= SB_LEAVE + 0.015) {
-        const clampedP = Math.max(0, Math.min(1, (p - SB_ENTER) / (SB_LEAVE - SB_ENTER)));
-        const rawOpacity = p < SB_ENTER
+        const raw = p < SB_ENTER
           ? (p - (SB_ENTER - 0.015)) / 0.015
           : p > SB_LEAVE
             ? 1 - (p - SB_LEAVE) / 0.015
             : 1;
-        canvasPhone.style.opacity = Math.max(0, Math.min(1, rawOpacity));
+        sectionImgLeft.style.opacity = Math.max(0, Math.min(1, raw));
 
-        const idx = Math.min(Math.floor(clampedP * PHONE_COUNT), PHONE_COUNT - 1);
-        requestAnimationFrame(() => drawPhoneFrame(idx));
+        const t = Math.max(0, Math.min(1, (p - SB_ENTER) / (SB_LEAVE - SB_ENTER)));
+        const fi = Math.min(Math.floor(t * P_HAND_COUNT), P_HAND_COUNT - 1);
+        if (fi !== lastHandFrame) {
+          lastHandFrame = fi;
+          requestAnimationFrame(() => drawPanelFrame(handCanvas, handFrames, fi));
+        }
       } else {
-        canvasPhone.style.opacity = '0';
+        sectionImgLeft.style.opacity = '0';
       }
     }
   });
@@ -401,12 +405,7 @@ function buildTimeline(section) {
       tl.from(children, { y: 30, opacity: 0, stagger: 0.06, duration: 0.45, ease: 'power3.out' });
       break;
     case 'scale-up':
-      tl.from(children, {
-        scale: 0.92, opacity: 0,
-        stagger: 0.07,
-        duration: 0.5,
-        ease: 'power2.out'
-      });
+      tl.from(children, { scale: 0.92, opacity: 0, stagger: 0.07, duration: 0.5, ease: 'power2.out' });
       break;
     default:
       tl.from(children, { opacity: 0, stagger: 0.05, duration: 0.4, ease: 'power3.out' });
@@ -469,45 +468,13 @@ function initSectionAnimations() {
 }
 
 /* ================================================================
-   HERO TEXT STACK — staggered scroll-reveal + fade-out near end
-   ================================================================ */
-
-function lerp01(p, start, end) {
-  if (p <= start) return 0;
-  if (p >= end)   return 1;
-  return (p - start) / (end - start);
-}
-
-function initHeroTextReveal() {
-  if (!heroTextStack) return;
-
-  ScrollTrigger.create({
-    trigger: scrollCont,
-    start: 'top top',
-    end: 'bottom bottom',
-    scrub: true,
-    onUpdate: (self) => {
-      const p = self.progress;
-
-      // Global fade-out near end
-      const fadeOut = p >= TL_FADE_START
-        ? Math.max(0, 1 - (p - TL_FADE_START) / (TL_FADE_END - TL_FADE_START))
-        : 1;
-
-      tlEternal.style.opacity   = lerp01(p, ETERNAL_IN_START,   ETERNAL_IN_END)   * fadeOut;
-      tlModern.style.opacity    = lerp01(p, MODERN_IN_START,    MODERN_IN_END)    * fadeOut;
-      tlBeautiful.style.opacity = lerp01(p, BEAUTIFUL_IN_START, BEAUTIFUL_IN_END) * fadeOut;
-    }
-  });
-}
-
-/* ================================================================
    RESIZE
    ================================================================ */
 
 function handleResize() {
   setupCanvas();
-  setupSectionCanvases();
+  setupPanelCanvas($('arch-panel-canvas'));
+  setupPanelCanvas($('hand-panel-canvas'));
   positionSections();
   drawFrame(currentFrame);
   ScrollTrigger.refresh();
@@ -520,22 +487,12 @@ function handleResize() {
 async function init() {
   gsap.registerPlugin(ScrollTrigger);
   setupCanvas();
-  setupSectionCanvases();
 
-  // Wait until first batch of frames loaded
   await preloadFrames();
-
-  // Brief pause so loader is readable
   await new Promise((r) => setTimeout(r, 300));
 
-  // Hide loader
   loader.classList.add('hidden');
 
-  // Start loading section canvas frames in background (non-blocking)
-  preloadLikeFrames();
-  preloadPhoneFrames();
-
-  // Lenis smooth scroll
   const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -552,8 +509,7 @@ async function init() {
 
   initFrameAnimation();
   initPedestalFlyUp();
-  initHeroTextReveal();
-  initSectionCanvases();
+  initPanelAnimations();
   initSectionAnimations();
 
   window.addEventListener('resize', handleResize);
