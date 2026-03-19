@@ -245,15 +245,8 @@ function preloadFrames() {
    ================================================================ */
 
 function positionSections() {
-  const containerH = scrollCont.offsetHeight;
-  const viewH      = window.innerHeight;
-
-  document.querySelectorAll('.scroll-section').forEach((section) => {
-    const enter = parseFloat(section.dataset.enter) / 100;
-    const leave = parseFloat(section.dataset.leave) / 100;
-    const mid   = (enter + leave) / 2;
-    section.style.top = (mid * containerH - viewH / 2) + 'px';
-  });
+  // Sections are position:fixed — they stay centered in viewport.
+  // Scroll progress controls opacity only; no positional offset needed.
 }
 
 /* ================================================================
