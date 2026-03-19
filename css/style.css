@@ -274,17 +274,12 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 420px;
-  height: 100px;
-  background: linear-gradient(to left, #252118 52%, transparent 100%);
+  width: 500px;
+  height: 120px;
+  background: #252118;
   pointer-events: none;
-}
-
-.canvas-corner-mask::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, #252118 52%, transparent 100%);
+  mask-image: linear-gradient(to bottom right, transparent 0%, #252118 35%);
+  -webkit-mask-image: linear-gradient(to bottom right, transparent 0%, #252118 35%);
 }
 
 /* ============================================
