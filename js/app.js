@@ -451,7 +451,7 @@ function initSectionAnimations() {
           state.shown = false;
         }
 
-        if (!persist && before && state.shown) {
+        if (before && state.shown) {
           gsap.to(section, { opacity: 0, duration: 0.3, ease: 'power2.in', overwrite: true });
           section.classList.remove('active');
           state.shown    = false;
