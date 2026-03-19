@@ -1310,19 +1310,47 @@ body {
     right: auto;
   }
 
-  /* ── Scroll sections: full-width ── */
+  /* ── Scroll sections: centered on mobile ── */
   .align-left,
   .align-right {
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     padding: 2rem 1.5rem;
-    align-items: flex-end;
-    padding-bottom: 5rem;
+    text-align: center;
   }
 
-  .section-inner { max-width: 100%; }
+  .align-left { padding-right: 1.5rem; }
+  .align-right { padding-left: 1.5rem; }
+
+  .section-inner {
+    max-width: 100%;
+    border-left: none;
+    border-bottom: 2px solid rgba(57, 255, 20, 0.3);
+    text-align: center;
+  }
 
   .section-heading {
-    font-size: clamp(2.2rem, 8vw, 4rem);
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  .section-body {
+    font-size: 0.85rem;
+  }
+
+  /* ── Image panels: bigger, lower opacity on mobile ── */
+  .section-img-panel {
+    width: 100vw;
+    left: 0;
+    right: auto;
+    height: 60vh;
+    top: 0;
+    opacity: 0.35;
+  }
+
+  .panel-right,
+  .panel-left {
+    left: 0;
+    right: auto;
   }
 
   /* ── CTA ── */
@@ -1388,13 +1416,6 @@ body {
   /* Imagery — mobile */
   .about-sculpture { display: none; }
   .arch-sculpture  { opacity: 0.06; height: 40%; }
-  .section-img-panel {
-    width: 100vw;
-    left: 0;
-    right: auto;
-    height: 50vh;
-    top: 0;
-  }
   .page-hero-sculpture { display: none; }
   .section-sculpture { display: none; }
 
