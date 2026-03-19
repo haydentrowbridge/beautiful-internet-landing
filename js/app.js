@@ -404,6 +404,9 @@ function buildTimeline(section) {
     case 'fade-up':
       tl.from(children, { y: 30, opacity: 0, stagger: 0.06, duration: 0.45, ease: 'power3.out' });
       break;
+    case 'fade-center':
+      tl.from(children, { opacity: 0, stagger: 0.08, duration: 0.6, ease: 'power2.out' });
+      break;
     case 'scale-up':
       tl.from(children, { scale: 0.92, opacity: 0, stagger: 0.07, duration: 0.5, ease: 'power2.out' });
       break;

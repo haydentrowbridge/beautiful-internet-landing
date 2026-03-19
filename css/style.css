@@ -820,7 +820,7 @@ body {
   margin-right: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border: 1px solid rgba(138, 130, 120, 0.18);
+  gap: 1.5rem;
 }
 
 .tier-row {
@@ -828,12 +828,11 @@ body {
   flex-direction: column;
   gap: 1.25rem;
   padding: 2.75rem 2.25rem;
-  border-right: 1px solid rgba(138, 130, 120, 0.18);
   align-items: flex-start;
 }
 
 .tier-row:last-child {
-  border-right: none;
+  /* glow-box handles borders */
 }
 
 .tier-number {
@@ -995,6 +994,18 @@ body {
   line-height: 1.8;
   margin-top: 1.5rem;
   max-width: 58ch;
+}
+
+/* ─── Glow box — phosphor outline container ─── */
+
+.glow-box {
+  border: 1px solid rgba(57, 255, 20, 0.35);
+  padding: 2rem 2.25rem;
+  position: relative;
+  box-shadow:
+    0 0 12px rgba(57, 255, 20, 0.08),
+    0 0 32px rgba(57, 255, 20, 0.04),
+    inset 0 0 12px rgba(57, 255, 20, 0.03);
 }
 
 /* ─── Tier subtitle ─── */
@@ -1273,18 +1284,19 @@ body {
 
   .tiers-list {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   .tier-row {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  }
-  .tier-row:last-child {
-    border-bottom: none;
+    padding: 2rem 1.5rem;
   }
   .tier-price-col {
     flex-direction: row;
     align-items: center;
     gap: 1.5rem;
+  }
+
+  .glow-box {
+    padding: 1.5rem 1.25rem;
   }
 
   .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
@@ -1293,4 +1305,32 @@ body {
   .about-sculpture { display: none; }
   .arch-sculpture  { opacity: 0.08; height: 50%; }
   .section-img-panel { display: none; }
+}
+
+/* ─── Laptop / medium screens (13–14 inch) ─── */
+
+@media (min-width: 769px) and (max-width: 1280px) {
+  .tiers-list {
+    gap: 1rem;
+  }
+
+  .tier-row {
+    padding: 2rem 1.75rem;
+  }
+
+  .about-content {
+    max-width: 560px;
+  }
+
+  .about-sculpture {
+    opacity: 0.18;
+  }
+}
+
+/* ─── 16-inch screens ─── */
+
+@media (min-width: 1281px) and (max-width: 1680px) {
+  .about-content {
+    max-width: 650px;
+  }
 }
